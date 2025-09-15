@@ -29,10 +29,7 @@ const projects = [
 
 function Projects() {
   return (
-    <section
-      id="projects"
-      className="py-16 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 dark:bg-gradient-to-br dark:from-gray-100 dark:via-gray-200 dark:to-gray-100"
-    >
+    <section id="projects" className="py-16 bg-transparent">
       <h2 className="text-3xl font-bold text-center text-blue-300 dark:text-blue-700 mb-10">
         Projects
       </h2>
@@ -40,7 +37,7 @@ function Projects() {
         {projects.map((project) => (
           <div
             key={project.title}
-            className="bg-gray-800 dark:bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 hover:shadow-2xl transition"
+            className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden transform hover:scale-105 hover:shadow-2xl transition"
           >
             <img
               src={project.image}
@@ -48,15 +45,15 @@ function Projects() {
               className="w-full h-48 object-cover"
             />
             <div className="p-6">
-              <h3 className="text-xl font-semibold text-blue-200 dark:text-blue-800 mb-2">
+              <h3 className="text-xl font-semibold text-blue-700 dark:text-blue-200 mb-2">
                 {project.title}
               </h3>
-              <p className="text-gray-300 dark:text-gray-700 mb-4">
+              <p className="text-gray-700 dark:text-gray-300 mb-4">
                 {project.description}
               </p>
               <a
                 href={project.link}
-                className="text-blue-400 dark:text-blue-600 hover:underline font-semibold"
+                className="text-blue-500 dark:text-blue-400 hover:underline font-semibold"
                 target="_blank"
                 rel="noopener noreferrer"
               >

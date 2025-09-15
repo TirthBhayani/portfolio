@@ -5,24 +5,21 @@ function About() {
   return (
     <section
       id="about"
-      className="flex justify-center items-center py-16"
-      style={{
-        background: "linear-gradient(135deg, #232526 0%, #414345 100%)",
-      }}
+      className="flex justify-center items-center py-16 bg-transparent"
     >
-      <div className="bg-gray-800 bg-opacity-90 rounded-2xl shadow-2xl p-10 flex flex-col items-center max-w-2xl w-full border border-gray-700">
+      <div className="bg-white dark:bg-gray-800 bg-opacity-90 rounded-2xl shadow-2xl p-10 flex flex-col items-center max-w-2xl w-full border border-gray-200 dark:border-gray-700 transition-colors duration-300">
         <img
           src={profilePhoto}
           alt="Profile"
           className="w-36 h-36 rounded-full shadow-lg mb-6 border-4 border-blue-400 object-cover transition-transform hover:scale-105"
         />
-        <h1 className="text-4xl font-extrabold mb-2 text-blue-300 tracking-tight drop-shadow">
+        <h1 className="text-4xl font-extrabold mb-2 text-blue-700 dark:text-blue-300 tracking-tight drop-shadow">
           Tirth Bhayani
         </h1>
-        <h2 className="text-xl font-semibold mb-4 text-blue-100">
+        <h2 className="text-xl font-semibold mb-4 text-blue-600 dark:text-blue-100">
           Android (Java) Developer &amp; PHP Developer
         </h2>
-        <p className="text-lg text-gray-300 max-w-lg mb-6">
+        <p className="text-lg text-gray-700 dark:text-gray-300 max-w-lg mb-6">
           Hi! I'm Tirth, an enthusiastic Android developer specializing in Java
           and a skilled PHP developer. I have a strong passion for building
           robust mobile apps and dynamic web solutions. Let's collaborate to
@@ -39,7 +36,7 @@ function About() {
             href="https://github.com/TirthBhayani"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-200 hover:text-blue-400 transition"
+            className="text-gray-700 dark:text-gray-200 hover:text-blue-400 transition"
             aria-label="GitHub"
           >
             <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -51,7 +48,7 @@ function About() {
             href="https://www.linkedin.com/in/tirth-bhayani-9667a725a/"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-200 hover:text-blue-400 transition"
+            className="text-gray-700 dark:text-gray-200 hover:text-blue-400 transition"
             aria-label="LinkedIn"
           >
             <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">

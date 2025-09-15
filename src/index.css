@@ -3,23 +3,51 @@
 @tailwind utilities;
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: "Inter", Arial, sans-serif;
+  min-height: 100vh;
   margin: 0;
   padding: 0;
-  background: linear-gradient(135deg, #232526 0%, #414345 100%);
-  min-height: 100vh;
+  /* Use Tailwind's bg classes in your App.jsx or index.html for theme switching */
 }
 
+/* Remove background and box-shadow from section for full theme control */
 section {
   margin: 2rem auto;
   max-width: 700px;
-  background: #fff;
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  padding: 2rem 1.25rem;
+  border-radius: 1rem;
+  /* No background or box-shadow here */
+}
+
+@media (max-width: 640px) {
+  section {
+    padding: 1rem 0.5rem;
+    margin: 1rem 0.25rem;
+    max-width: 98vw;
+  }
+  h1,
+  h2 {
+    font-size: 1.5rem;
+  }
 }
 
 h1,
 h2 {
-  color: #333;
+  color: #38bdf8;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  letter-spacing: -1px;
+}
+
+a {
+  transition: color 0.2s;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  background: #232526;
+}
+::-webkit-scrollbar-thumb {
+  background: #38bdf8;
+  border-radius: 4px;
 }
