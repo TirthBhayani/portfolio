@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { HiChevronLeft, HiChevronRight } from "react-icons/hi";
 
 const testimonials = [
   {
@@ -30,42 +32,51 @@ function Testimonials() {
     setIndex((i) => (i === testimonials.length - 1 ? 0 : i + 1));
 
   return (
-    <section id="testimonials" className="py-16 bg-gray-900">
-      <h2 className="text-3xl font-bold text-center text-blue-300 mb-10">
-        Testimonials
-      </h2>
-      <div className="flex flex-col items-center">
-        <div className="bg-gray-800 rounded-xl shadow-lg p-8 max-w-xl text-center">
-          <img
-            src={testimonials[index].avatar}
-            alt={testimonials[index].name}
-            className="w-20 h-20 rounded-full mx-auto mb-4 border-4 border-blue-400 object-cover"
-          />
-          <p className="text-lg text-gray-200 mb-4">
-            &ldquo;{testimonials[index].text}&rdquo;
-          </p>
-          <div className="font-semibold text-blue-200">
-            {testimonials[index].name}
+    <section id="testimonials" className="py-20 bg-gray-50 dark:bg-gray-900">
+      <div className="max-w-4xl mx-auto px-4 text-center">
+        <h2 className="text-4xl font-bold mb-12 text-gray-900 dark:text-white">Client Testimonials</h2>
+
+        <div className="relative bg-white dark:bg-gray-800 rounded-3xl shadow-xl p-8 md:p-12">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.3 }}
+              className="flex flex-col items-center"
+            >
+              <img
+                src={testimonials[index].avatar}
+                alt={testimonials[index].name}
+                className="w-24 h-24 rounded-full mb-6 border-4 border-primary-100 dark:border-primary-900 object-cover"
+              />
+              <p className="text-xl md:text-2xl italic text-gray-600 dark:text-gray-300 mb-8 max-w-2xl leading-relaxed">
+                "{testimonials[index].text}"
+              </p>
+              <div>
+                <h4 className="text-lg font-bold text-gray-900 dark:text-white">{testimonials[index].name}</h4>
+                <p className="text-primary-500">{testimonials[index].role}</p>
+              </div>
+            </motion.div>
+          </AnimatePresence>
+
+          <div className="flex justify-center gap-4 mt-8">
+            <button
+              onClick={prev}
+              className="p-3 rounded-full bg-gray-100 dark:bg-gray-700 hover:bg-primary-500 hover:text-white dark:hover:bg-primary-600 transition-colors"
+              aria-label="Previous"
+            >
+              <HiChevronLeft className="w-6 h-6" />
+            </button>
+            <button
+              onClick={next}
+              className="p-3 rounded-full bg-gray-100 dark:bg-gray-700 hover:bg-primary-500 hover:text-white dark:hover:bg-primary-600 transition-colors"
+              aria-label="Next"
+            >
+              <HiChevronRight className="w-6 h-6" />
+            </button>
           </div>
-          <div className="text-blue-100 text-sm">
-            {testimonials[index].role}
-          </div>
-        </div>
-        <div className="flex gap-4 mt-6">
-          <button
-            onClick={prev}
-            className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-full shadow transition"
-            aria-label="Previous"
-          >
-            &#8592;
-          </button>
-          <button
-            onClick={next}
-            className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-full shadow transition"
-            aria-label="Next"
-          >
-            &#8594;
-          </button>
         </div>
       </div>
     </section>

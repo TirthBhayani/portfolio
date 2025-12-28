@@ -1,53 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  font-family: "Inter", Arial, sans-serif;
-  min-height: 100vh;
-  margin: 0;
-  padding: 0;
-  /* Use Tailwind's bg classes in your App.jsx or index.html for theme switching */
+  font-family: 'Outfit', sans-serif;
+  @apply bg-gray-50 text-gray-900 dark:bg-gray-950 dark:text-white transition-colors duration-300;
+  overflow-x: hidden;
 }
 
-/* Remove background and box-shadow from section for full theme control */
-section {
-  margin: 2rem auto;
-  max-width: 700px;
-  padding: 2rem 1.25rem;
-  border-radius: 1rem;
-  /* No background or box-shadow here */
-}
-
-@media (max-width: 640px) {
-  section {
-    padding: 1rem 0.5rem;
-    margin: 1rem 0.25rem;
-    max-width: 98vw;
-  }
-  h1,
-  h2 {
-    font-size: 1.5rem;
-  }
-}
-
-h1,
-h2 {
-  color: #38bdf8;
-  margin-bottom: 1rem;
-  font-weight: 700;
-  letter-spacing: -1px;
-}
-
-a {
-  transition: color 0.2s;
-}
-
+/* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
-  background: #232526;
+  width: 10px;
 }
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100 dark:bg-gray-900;
+}
+
 ::-webkit-scrollbar-thumb {
-  background: #38bdf8;
-  border-radius: 4px;
+  @apply bg-gradient-to-b from-primary-400 to-violet-500 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply from-primary-500 to-violet-600;
+}
+
+/* Utilities */
+.glass {
+  @apply bg-white/10 backdrop-blur-lg border border-white/20 shadow-xl;
+}
+
+.gradient-text {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-400 to-violet-500;
 }

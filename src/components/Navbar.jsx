@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { HiMenuAlt3, HiX, HiMoon, HiSun } from "react-icons/hi";
 
 function Navbar() {
   const [dark, setDark] = useState(() => {
@@ -12,6 +14,7 @@ function Navbar() {
 
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+  const [scrolled, setScrolled] = useState(false);
 
   // Dark mode effect
   useEffect(() => {
@@ -24,18 +27,11 @@ function Navbar() {
     }
   }, [dark]);
 
-  // Scroll listener to highlight active section
+  // Scroll listener
   useEffect(() => {
     const handleScroll = () => {
-      const sections = [
-        "home",
-        "about",
-        "skills",
-        "projects",
-        "testimonials",
-        "blog",
-        "contact",
-      ];
+      setScrolled(window.scrollY > 20);
+      const sections = ["home", "about", "skills", "projects", "testimonials", "blog", "contact"];
       sections.forEach((id) => {
         const el = document.getElementById(id);
         if (el) {
@@ -48,127 +44,102 @@ function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Smooth scroll handler
   const handleNavClick = (e, id) => {
     e.preventDefault();
     const el = document.getElementById(id);
     if (el) {
       el.scrollIntoView({ behavior: "smooth" });
-      setMenuOpen(false); // Close menu on mobile
+      setMenuOpen(false);
     }
   };
 
   const links = [
     { id: "home", label: "Home" },
-    { id: "about", label: "About Me" },
+    { id: "about", label: "About" },
     { id: "skills", label: "Skills" },
     { id: "projects", label: "Projects" },
-    
     { id: "blog", label: "Blog" },
     { id: "contact", label: "Contact" },
   ];
 
   return (
-    <nav className="bg-gray-950 bg-opacity-90 sticky top-0 z-50 shadow">
-      <div className="max-w-5xl mx-auto px-4 py-3 flex justify-between items-center">
-        <span className="font-bold text-xl text-blue-400">Tirth Bhayani</span>
+    <nav
+      className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${scrolled ? "glass py-3" : "bg-transparent py-5"
+        }`}
+    >
+      <div className="max-w-7xl mx-auto px-4 md:px-8 flex justify-between items-center">
+        <a href="#" className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-violet-600">
+          Tirth Bhayani
+        </a>
 
         {/* Desktop Links */}
-        <div className="space-x-6 hidden md:flex">
+        <div className="hidden md:flex items-center space-x-8">
           {links.map((link) => (
             <a
               key={link.id}
               href={`#${link.id}`}
               onClick={(e) => handleNavClick(e, link.id)}
-              className={`hover:text-blue-400 transition ${
-                activeSection === link.id ? "text-blue-400 font-bold" : ""
-              }`}
-              aria-current={activeSection === link.id ? "page" : undefined}
+              className={`text-sm font-medium transition-colors hover:text-primary-500 ${activeSection === link.id
+                ? "text-primary-500"
+                : "text-gray-600 dark:text-gray-300"
+                }`}
             >
               {link.label}
             </a>
           ))}
+
+          <button
+            onClick={() => setDark(!dark)}
+            className="p-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 transition"
+          >
+            {dark ? <HiSun className="w-5 h-5" /> : <HiMoon className="w-5 h-5" />}
+          </button>
         </div>
 
-        {/* Dark mode toggle & Mobile Menu button */}
-        <div className="flex items-center space-x-2">
+        {/* Mobile Toggle */}
+        <div className="md:hidden flex items-center space-x-4">
           <button
-            onClick={() => setDark((d) => !d)}
-            className="p-2 rounded-full bg-gray-800 hover:bg-blue-500 transition text-white"
-            aria-label="Toggle dark mode"
+            onClick={() => setDark(!dark)}
+            className="p-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200"
           >
-            {dark ? (
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                {/* Sun icon */}
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M12 3v1m0 16v1m8.66-8.66l-.71.71M4.05 19.07l-.71.71M21 12h-1M4 12H3m16.95 7.07l-.71-.71M4.05 4.93l-.71-.71M16 12a4 4 0 11-8 0 4 4 0 018 0z"
-                />
-              </svg>
-            ) : (
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                {/* Moon icon */}
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z"
-                />
-              </svg>
-            )}
+            {dark ? <HiSun className="w-5 h-5" /> : <HiMoon className="w-5 h-5" />}
           </button>
-
           <button
-            className="md:hidden p-2 rounded bg-gray-800 hover:bg-blue-500 text-white"
             onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Toggle menu"
+            className="text-gray-800 dark:text-white"
           >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d={menuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}
-              />
-            </svg>
+            {menuOpen ? <HiX className="w-7 h-7" /> : <HiMenuAlt3 className="w-7 h-7" />}
           </button>
         </div>
       </div>
 
       {/* Mobile Menu */}
-      {menuOpen && (
-        <div className="md:hidden bg-gray-950 flex flex-col items-center space-y-4 py-4">
-          {links.map((link) => (
-            <a
-              key={link.id}
-              href={`#${link.id}`}
-              onClick={(e) => handleNavClick(e, link.id)}
-              className={`hover:text-blue-400 transition ${
-                activeSection === link.id ? "text-blue-400 font-bold" : ""
-              }`}
-            >
-              {link.label}
-            </a>
-          ))}
-        </div>
-      )}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            className="md:hidden overflow-hidden bg-white/95 dark:bg-gray-950/95 backdrop-blur-xl border-t border-gray-100 dark:border-gray-800"
+          >
+            <div className="flex flex-col p-4 space-y-4">
+              {links.map((link) => (
+                <a
+                  key={link.id}
+                  href={`#${link.id}`}
+                  onClick={(e) => handleNavClick(e, link.id)}
+                  className={`text-lg font-medium block ${activeSection === link.id
+                    ? "text-primary-500"
+                    : "text-gray-600 dark:text-gray-300"
+                    }`}
+                >
+                  {link.label}
+                </a>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 }
