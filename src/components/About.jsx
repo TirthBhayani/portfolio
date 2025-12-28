@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
-import profilePhoto from "../assets/profile.JPG";
+import profilePhoto from "../assets/portfolio.jpeg";
 
 function About() {
   return (
@@ -20,7 +20,7 @@ function About() {
               <div className="absolute inset-0 bg-gradient-to-r from-primary-500 to-violet-500 rounded-[2rem] rotate-6 opacity-20 blur-lg animate-pulse" />
               <img
                 src={profilePhoto}
-                alt="Profile"
+                alt="Tirth Bhayani - Android & Web Developer"
                 className="relative w-full h-full object-cover rounded-[2rem] shadow-2xl border-4 border-white dark:border-gray-800 rotate-3 hover:rotate-0 transition-transform duration-500"
               />
             </div>

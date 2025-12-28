@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://tirthbhayani.github.io/sitemap.xml
