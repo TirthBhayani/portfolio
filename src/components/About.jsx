@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
-import profilePhoto from "../assets/portfolio.jpeg";
+import profilePhoto from "../assets/profile.JPG";
 
 function About() {
   return (
